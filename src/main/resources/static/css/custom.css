@@ -1,0 +1,112 @@
+.catalog-title{
+	position: absolute;
+	background: #787878a6;
+	color: #fff;
+	padding: 10px;
+	margin: 5px;
+	border-radius: 5px;
+}
+.paddingZero{
+	padding: 0px;
+	margin: 0px
+}
+
+table.table{
+	width: 100%!important;
+}
+
+.hidden{
+	display: none;
+}
+
+.info-box-text{
+	white-space: none!important;
+}
+
+td span.number-right{
+	float:right;
+}
+.number-right
+{text-align: right}
+
+.disount{
+	border: 5px #fff dashed;
+}
+
+#viewTransaction{
+	  padding-right:0px!important;
+	  padding-left:0px!important;
+}
+.modal-dialog.modal-dg-fullscreen{
+  width: 100%!important;
+  max-width: 100%;
+
+  height: 100%;
+  margin: 0;
+  padding: 0;
+
+}
+
+.modal-content.modal-fullscreen {
+  height: auto;
+  min-height: 100%;
+  border-radius: 0;
+}
+
+iframe{
+	border: 0px;
+}
+
+img.preview{
+	width: 150px;
+	padding: 2px;
+	background: #fff;
+	border-radius: 5px;
+}
+
+.item-thumbnail {
+	/*padding: 5px;*/
+	border: solid 1px #ccc;
+}
+.card-body.card-item {
+	padding: 0px;
+	border: solid 1px #f5f5f5;
+	background: #efebeb;
+	border-radius: 5px;
+}
+.item-view{
+	padding: 5px;
+	background: #fff;
+	border: 0px;
+}
+.item-title, .item-price{
+	padding: 6px;
+}
+.item-thumbnail{
+	border-radius: 5px 5px 0 0;
+		width: 100%;
+}
+button:focus {
+	outline: none!important;
+}
+.image-label{
+	position: absolute;
+	padding: 5px 15px;
+	background: #313131;
+	border-radius: 5px;
+	color: #fff;
+	opacity: 0.9;
+	margin: 5px;
+}
+
+
+.info-box-text{
+    white-space: break-spaces!important;
+}
+
+#notifications{
+	position: absolute;
+	right: 15px;
+	bottom: 50px;
+	z-index: 999999;
+}

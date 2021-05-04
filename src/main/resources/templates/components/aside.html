@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<aside th:fragment="aside" class="main-sidebar sidebar-dark-primary elevation-4">
+	<a href="#" class="brand-link">
+		
+		<span class="brand-text font-weight-light">TreatU</span>
+	</a>
+
+	<div class="sidebar">
+		<div class="user-panel mt-3 pb-3 mb-3 d-flex">
+			<!--<div class="image">
+				<img src="<?php //echo $logoApp; ?>" class="img-circle elevation-2" alt="User Image">
+			</div>-->
+			<div class="info">
+				<a class="d-block">
+					<b>Darma Kusumandaru</b><br>
+					<b><i>Admin</i></b> 
+				</a>
+			</div>
+		</div>
+
+		<nav class="mt-2">
+			<ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+				<li class="nav-item">
+					<a href="app/dashboard" class="nav-link">
+						<i class="nav-icon fas fa-tachometer-alt"></i>
+						<p>
+							Dashboard
+						</p>
+					</a>
+				</li>
+				<li class="nav-item">
+					<a href="cash" class="nav-link">
+						<i class="nav-icon fas fa-money-bill-alt"></i>
+						<p>
+							User Management
+							<span class="right badge badge-danger">New</span>
+						</p>
+					</a>
+				</li>
+
+
+					<li class="nav-item has-treeview">
+						<a href="" class="nav-link">
+							<i class="nav-icon fas fa-box"></i>
+							<p>
+								Data Master
+								<i class="right fas fa-angle-left"></i>
+							</p>
+						</a>
+						<ul class="nav nav-treeview">
+							<li class="nav-item">
+								<a href="product" class="nav-link ">
+									<i class="far fa-circle fa-xs nav-icon"></i>
+									<p>Rule</p>
+								</a>
+							</li>
+							<li class="nav-item">
+								<a href="categories" class="nav-link">
+									<i class="fas fa-tags fa-xs nav-icon"></i>
+									<p>Department</p>
+								</a>
+							</li>
+							<li class="nav-item">
+								<a href="wholesales" class="nav-link">
+									<i class="fas fa-truck-loading fa-xs nav-icon"></i>
+									<p>Action</p>
+								</a>
+							</li>
+							<li class="nav-item">
+								<a href="logs" class="nav-link">
+									<i class="fas fa-history fa-xs nav-icon"></i>
+									<p>Feature</p>
+								</a>
+							</li>
+						</ul>
+					</li>
+
+					<li class="nav-item">
+						<a href="discount" class="nav-link">
+							<i class="nav-icon fas fa-percentage"></i>
+							<p>
+								Schedule
+							</p>
+						</a>
+					</li>				 
+
+
+
+
+				<li class="nav-item">
+					<a href="user/logout" class="nav-link">
+						<i class="nav-icon fas fa-sign-out-alt"></i>
+						<p>
+							Logout
+						</p>
+					</a>
+				</li>
+
+		</nav>
+	</div>
+</aside>

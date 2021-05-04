@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="ISO-8859-1">
+        <title>User Registration</title>
+        <style type="text/css">
+            label {
+                display: inline-block;
+                width: 200px;
+                margin: 5px;
+                text-align: left;
+            }
+            input[type=text], input[type=password], select {
+                display: inline-block;
+                width: 200px;
+            }
+            input[type=radio] {
+                margin-left: 45px;
+            }
+            input[type=checkbox] {
+                margin-right: 190px;
+            }  
+            button {
+                padding: 5px;
+                margin: 10px;
+            }
+        </style>
+
+    </head>
+    <body>
+        <div align="center">
+            <h1>User Registration</h1>
+            <form action="#" th:action="@{/register}" method="post" th:object="${user}">
+                <label>First Name : </label>
+                <input type="text" th:field="*{firstName}" /><br/>
+
+                <label>Last Name : </label>
+                <input type="text" th:field="*{lastName}" /><br/>
+
+                <label>Email : </label>
+                <input type="text" th:field="*{email}" /><br/>
+
+                <label>Password : </label>
+                <input type="text" th:field="*{password}" /><br/>
+
+                <label>Rule:</label>
+                <select th:field="*{idRole}">
+                    <option th:each="p : ${roles}" th:value="${p}" th:text="${p}" />
+                </select>
+                <br/>
+                <label>Department:</label>
+                <select th:field="*{idDepartment}">
+                    <option th:each="p : ${listDepartment}" th:value="${p}" th:text="${p}" />
+                </select>
+                <br/>
+
+                <button type="submit">Register</button>    
+            </form>
+        </div>
+    </body>
+</html>

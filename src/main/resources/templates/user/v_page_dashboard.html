@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns:th="http://www.thymeleaf.org">
+    <title>Dashboard | TreatU</title>
+    <head th:insert="components/head.html :: head">
+
+    </head>
+    
+    <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+	<div class="wrapper">
+            <nav th:insert="components/nav.html :: nav" class="navbar"></nav>
+            <aside th:insert="components/aside.html :: aside"></aside>
+            <!--<div th:insert="components/content-wrapper.html :: content-wrapper"></div>-->
+                <div th-fragment="content-wrapper" class="content-wrapper">
+
+			<div class="content-header">
+				<div class="container-fluid">
+				<div class="row mb-2">
+					<div class="col-sm-6">
+					<h1 class="m-0 text-dark">
+						<b>Menu</b><small></small>
+					</h1>
+					</div>
+					<div class="col-sm-6">
+                                            <ol class="breadcrumb float-sm-right">
+						</ol>
+					</div>
+				</div>
+				</div>
+			</div>
+
+			<section class="content">
+				<div class="container-fluid">
+				<div class="body">
+
+				</div>
+				</div>
+			</section>
+		</div>
+
+            <footer th:insert="components/footer.html :: footer"></footer>
+        </div>
+        
+        <div th:insert="components/foot.html :: foot"></div>
+    </body>
+</html>
