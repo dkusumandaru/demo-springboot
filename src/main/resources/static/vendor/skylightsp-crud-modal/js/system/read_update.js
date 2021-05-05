@@ -313,22 +313,7 @@ $('#tables').on('click','.delete_record',function(){
 
 
 		if (value == 'add') {
-			var results = [];
-			$('#'+value+'-crud-content input').each(function(){
-			    results.push({
-			        id: this.id,
-			        value: this.value
-			    });
-			});
-
-			$('#'+value+'-crud-content select').each(function(){
-			    results.push({
-			        id: this.id,
-			        value: this.value
-			    });
-			});
-
-			// console.log(results);
+			var results = collect(value);
 
 			for (var i = 0; i < results.length; i++) {
 				console.log(results[i].value);
@@ -386,22 +371,7 @@ $('#tables').on('click','.delete_record',function(){
 			// // 	// console.log(idModal);
 			// }
 		}else if (value == 'replace') {
-			var results = [];
-			$('#'+value+'-crud-content input').each(function(){
-			    results.push({
-			        id: this.id,
-			        value: this.value
-			    });
-			});
-
-			$('#'+value+'-crud-content select').each(function(){
-			    results.push({
-			        id: this.id,
-			        value: this.value
-			    });
-			});
-
-			// console.log(results);
+			var results = collect(value);
 
 			for (var i = 0; i < results.length; i++) {
 				console.log(results[i].value);

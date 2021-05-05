@@ -36,12 +36,6 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "ProductCategory.findByActiveProductCategory", query = "SELECT p FROM ProductCategory p WHERE p.activeProductCategory = :activeProductCategory")})
 public class ProductCategory implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-    @Id
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "id_product_category")
-    private Integer idProductCategory;
     @Basic(optional = false)
     @NotNull
     @Lob
@@ -53,6 +47,13 @@ public class ProductCategory implements Serializable {
     @Size(min = 1, max = 5)
     @Column(name = "active_product_category")
     private String activeProductCategory;
+
+    private static final long serialVersionUID = 1L;
+    @Id
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "id_product_category")
+    private Integer idProductCategory;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idProductCategory", fetch = FetchType.LAZY)
     private Collection<Product> productCollection;
 

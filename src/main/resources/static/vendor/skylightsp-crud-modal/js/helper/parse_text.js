@@ -161,3 +161,16 @@
 		}
 	}
 //---<> Access
+
+//---<> Get Id
+
+function getSelectPointer(str){
+	var pointer = str.substr(0, str.indexOf('_id_select_'));
+
+	console.log(pointer);
+
+	return pointer;
+
+}
+
+//---<> Get Id
