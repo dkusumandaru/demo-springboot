@@ -85,12 +85,14 @@ public class Product implements Serializable {
         this.idProduct = idProduct;
     }
 
-    public Product(String idProduct, String nameProduct, String describeProduct, int priceProduct, int amountProduct) {
-        this.idProduct = idProduct;
-        this.nameProduct = nameProduct;
-        this.describeProduct = describeProduct;
-        this.priceProduct = priceProduct;
-        this.amountProduct = amountProduct;
+    public Product(String idProduct, String nameProduct, String describeProduct, int priceProduct, int amountProduct, String activeProduct, Object idProductCategory) {
+        this.idProduct          = idProduct;
+        this.nameProduct        = nameProduct;
+        this.describeProduct    = describeProduct;
+        this.priceProduct       = priceProduct;
+        this.amountProduct      = amountProduct;
+        this.activeProduct      = activeProduct;
+        this.idProductCategory  = (ProductCategory) idProductCategory;
     }
 
     public String getIdProduct() {
@@ -176,7 +178,11 @@ public class Product implements Serializable {
     }
 
     public void setIdProductCategory(ProductCategory idProductCategory) {
-        this.idProductCategory = idProductCategory;
+        this.idProductCategory = (ProductCategory) idProductCategory;
     }
-    
+
+    public void setIdProductCategory(Object idProductCategoryObject) {
+        this.idProductCategory = (ProductCategory) idProductCategory;
+    }
+   
 }

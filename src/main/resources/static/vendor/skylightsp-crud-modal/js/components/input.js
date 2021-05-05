@@ -12,14 +12,14 @@ var input = {
 
 function loadOption(Value){
 
-	// console.log(optionTemporaryData);
+	console.log(Value);
 
 	// console.log(input);
 	var optionList = '';
 	var optionUsage = '';
 	var optionUnusage = '';
 	var optionStart = '';
-	var optionData = optionTemporaryData['role'];
+	var optionData = optionTemporaryData[Value];
 
 	optionLenght = Object.keys(optionData).length;
 
@@ -127,7 +127,8 @@ function generateInput(Title, access, nameClass, nameId, typeValue, Value, Requi
 		generatePlaceholder = input.pf[5]+'="'+Title+'" ';
 	}
 
-	// console.log('HERE : '+Value);
+
+	// console.log('HERE : '+nameId);
 
 	if (Value != '') {
 		if(Value == 0 || Value == '0'){
@@ -170,7 +171,8 @@ function generateInput(Title, access, nameClass, nameId, typeValue, Value, Requi
 		head = input.b[0];
 		if (access == 'select') {
 			var generateChange = ' '+input.pf[9]+'="unloadExclamation(&#39;'+nameId+'&#39;)" ';
-			var optionResult = loadOption(Value);
+			var pointer = getSelectPointer(nameId);
+			var optionResult = loadOption(pointer);
 			var content =
 				input.s[0]+
 					generateId+
