@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.zembarang.demo.entity.controller;
+package com.zembarang.demo.controller;
 
 import com.google.common.collect.ArrayListMultimap;
 import com.zembarang.demo.config.skylightSupportModalCrud;

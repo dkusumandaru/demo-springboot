@@ -24,11 +24,11 @@
                             <div class="col-sm-6">
                                 <ol class="breadcrumb float-sm-right">
                                     <span class="pull-right" id="add_tables">
-                                        <a href="javascript:void(0);" class="add_record btn btn-success btn-xs" 
-                                        
-                                        
+                                        <a href="javascript:void(0);" class="add_record btn btn-success btn-xs"
+                                        data-product_describe=""
                                         data-product_amount=""
-                                        data-product_price=""
+                                        data-product_price=""                                        
+                                        data-product_category_id_select=""
                                         data-product_name=""
                                         ><span class="fa fa-plus-circle"></span> Add Product</a>
 
@@ -48,6 +48,7 @@
                                         <tr>
                                             <th scope="col">ID</th>
                                             <th scope="col">Name</th>
+                                            <th scope="col">Category</th>
                                             <th scope="col">Amount</th>
                                             <th scope="col">Price</th>
                                             <th scope="col">Action</th>
@@ -59,6 +60,7 @@
                                         <tr th:each="product : ${product}">
                                             <td th:text="${product.idProduct}"></td>
                                             <td th:text="${product.nameProduct}"></td>
+                                            <td th:text="${product.idProductCategory.nameProductCategory}"></td>
                                             <td th:text="${product.amountProduct}"></td>
                                             <td th:text="${product.priceProduct}"></td>
                                             <td>
@@ -67,6 +69,7 @@
                                                     th:data-product_id="${product.idProduct}"
                                                     th:data-product_amount="${product.amountProduct}"
                                                     th:data-product_price="${product.priceProduct}"
+                                                    th:data-product_category_id_select="${product.idProductCategory.idProductCategory}"
                                                     th:data-product_name="${product.nameProduct}"
                                                     ><span class="fas fa-edit"></span> Edit</a>
                                         
@@ -89,7 +92,14 @@
                 </section>
 
             </div>
+            <!-- <textarea class="object" th:text=> -->
+                
+            <!-- </textarea> -->
+
+            <input type="" name="" th:value="${option}">
+
             
+
             <!-- <form th:insert="product/v_add.html :: form" id="add-row-form" th:action="@{/product/add}" th:object="${addProduct}" method="POST"></form> -->
             <!-- <form th:insert="product/v_edit.html :: form" id="edit-row-form" th:action="@{/product/edit}" th:object="${editProduct}" method="POST"></form> -->
             <!--<form th:insert="product/v_remove.html :: form" id="add-row-form" th:action="@{/product/remove}" th:object="${removeProduct}" method="POST"></form>-->
@@ -100,7 +110,8 @@
         <div th:insert="components/crud/v_modal.html :: form"></div>
         <div th:insert="components/foot.html :: foot"></div>
         <div th:insert="components/crud/v_foot.html :: foot"></div>
-        <script src="js/helper/role.js"></script>
+        <!-- <script src="js/helper/role.js"></script> -->
+        <div th:insert="components/crud/v_jumper_option.html :: jump"></div>
         
     </body>
 </html>

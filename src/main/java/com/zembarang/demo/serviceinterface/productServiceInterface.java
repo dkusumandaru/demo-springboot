@@ -6,7 +6,9 @@
 package com.zembarang.demo.serviceinterface;
 
 import com.zembarang.demo.entity.Product;
+import java.util.List;
 import java.util.Optional;
+import org.springframework.data.repository.query.Param;
 
 /**
  *
@@ -14,8 +16,10 @@ import java.util.Optional;
  */
 public interface productServiceInterface {
     Iterable<Product> getAll(); 
-    Optional<Product> getById(String id);
+    Iterable <Product> getActiveProduct();
+//    Optional<Product> getById(String id);
     void deleleteById(String id);
     void save(Product product);
+    List <Product> getById(String id);
 //    Iterable<Product> getProductActive(); 
 }
