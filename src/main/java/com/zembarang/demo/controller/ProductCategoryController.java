@@ -124,9 +124,6 @@ public class ProductCategoryController {
             nameProductCategory = i.getNameProductCategory();
             System.out.println(nameProductCategory);
         }
-       
-        
-        
         
         ProductCategory productCategory = new ProductCategory(idProductCategory, nameProductCategory, activeProductCategory);
         productCategory.setIdProductCategory(idProductCategory);

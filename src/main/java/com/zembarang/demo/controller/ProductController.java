@@ -167,7 +167,7 @@ public class ProductController {
         return "redirect:/product";
     }    
     
-    @RequestMapping(value = "/product/category/remove", method = RequestMethod.POST)
+    @RequestMapping(value = "/product/remove", method = RequestMethod.POST)
     public String removeProductCategory(
         @RequestParam(value = "product_id_remove", required = false) String idProduct
     ){
