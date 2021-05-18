@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.zembarang.demo.controller;
+package com.zembarang.demo.controllers;
 
 import com.zembarang.demo.config.skylightSupportModalCrud;
 import com.zembarang.demo.entity.Product;

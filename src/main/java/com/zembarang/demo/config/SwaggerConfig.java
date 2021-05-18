@@ -46,8 +46,8 @@ public class SwaggerConfig {
     
     private ApiInfo metadata(){
         return new ApiInfoBuilder()
-                .title("Payment")
-                .description("Payment Confirmation SkyLight Product")
+                .title("User Management")
+                .description("User Management SkyLight Product")
                 .version("1.0.0")
                 .license("MIT Lisence").licenseUrl("http://opensource.org/licenses/MIT")
                 .build();
