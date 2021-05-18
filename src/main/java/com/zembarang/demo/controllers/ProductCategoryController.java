@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.zembarang.demo.controller;
+package com.zembarang.demo.controllers;
 
 import com.google.common.collect.ArrayListMultimap;
 import com.zembarang.demo.config.skylightSupportModalCrud;
@@ -124,9 +124,6 @@ public class ProductCategoryController {
             nameProductCategory = i.getNameProductCategory();
             System.out.println(nameProductCategory);
         }
-       
-        
-        
         
         ProductCategory productCategory = new ProductCategory(idProductCategory, nameProductCategory, activeProductCategory);
         productCategory.setIdProductCategory(idProductCategory);
