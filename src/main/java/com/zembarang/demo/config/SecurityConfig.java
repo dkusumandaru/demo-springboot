@@ -5,6 +5,7 @@
  */
 package com.zembarang.demo.config;
 
+import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -23,7 +24,13 @@ import org.springframework.security.crypto.password.PasswordEncoder;
  */
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
-
+    @Autowired
+    DataSource dataSource;
+    
+    // TAMBAHI CUSTOM SUCCESS HANDLER
+    @Autowired
+    securityCustomSuccessHandler customSuccessHandler;
+    
     @Autowired
     UserDetailsService userDetailService;
     
@@ -52,7 +59,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                 .antMatchers("/password/reset").permitAll()
 //                .antMatchers("/").permitAll()
                 .and()
-                .formLogin();
+                .formLogin()
+                .successHandler(customSuccessHandler);
     }
     
     
