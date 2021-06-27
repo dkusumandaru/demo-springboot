@@ -23,7 +23,7 @@ import org.springframework.stereotype.Component;
  * @author dragon
  */
 @Component
-public class securityCustomSuccessHandler extends SimpleUrlAuthenticationSuccessHandler{
+public class SecurityCustomSuccessHandler extends SimpleUrlAuthenticationSuccessHandler{
     
     private RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
     
