@@ -3,17 +3,22 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.zembarang.demo.controller;
+package com.zembarang.demo.controllers;
 
 import com.google.common.collect.ArrayListMultimap;
 import com.zembarang.demo.config.skylightSupportModalCrud;
 import com.zembarang.demo.entity.ProductCategory;
+import com.zembarang.demo.entity.User;
+import com.zembarang.demo.entity.UserSession;
 import com.zembarang.demo.serviceimplement.productCategoryService;
+import com.zembarang.demo.serviceimplement.userService;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,6 +27,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import sun.security.x509.OIDMap;
 
 /**
  *
@@ -34,10 +40,25 @@ public class ProductCategoryController {
     productCategoryService productCategoryService;
     
     @Autowired
+    userService uService;
+    
+    @Autowired
     skylightSupportModalCrud skylightSupportModalCrud;
     
     @GetMapping("/product/category")
     public String getRole(Model productCategoryModel) {
+        
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String email = auth.getName();
+        User user = uService.getEmailUser(email);
+        
+        String id = user.getIdUser();
+        String name = user.getUsernameUser();
+        String role = user.getTypeUser();
+        
+        UserSession users = new UserSession(name, id, role);
+        productCategoryModel.addAttribute("user", users);
+        
         
         Iterable<ProductCategory> productCategories = productCategoryService.getActiveProductCategory();
         productCategoryModel.addAttribute("category", productCategories);
@@ -124,9 +145,6 @@ public class ProductCategoryController {
             nameProductCategory = i.getNameProductCategory();
             System.out.println(nameProductCategory);
         }
-       
-        
-        
         
         ProductCategory productCategory = new ProductCategory(idProductCategory, nameProductCategory, activeProductCategory);
         productCategory.setIdProductCategory(idProductCategory);

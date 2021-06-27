@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.zembarang.demo.controller;
+package com.zembarang.demo.controllers;
 
 import com.zembarang.demo.config.skylightSupportModalCrud;
 import com.zembarang.demo.entity.Product;
@@ -167,7 +167,7 @@ public class ProductController {
         return "redirect:/product";
     }    
     
-    @RequestMapping(value = "/product/category/remove", method = RequestMethod.POST)
+    @RequestMapping(value = "/product/remove", method = RequestMethod.POST)
     public String removeProductCategory(
         @RequestParam(value = "product_id_remove", required = false) String idProduct
     ){

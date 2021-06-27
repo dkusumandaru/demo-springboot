@@ -1,24 +1,15 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <aside th:fragment="aside" class="main-sidebar sidebar-dark-primary elevation-4">
 	<a href="#" class="brand-link">
 		
-		<span class="brand-text font-weight-light">TreatU</span>
+		<span class="brand-text font-weight-light">Demo Springboot</span>
 	</a>
 
 	<div class="sidebar">
 		<div class="user-panel mt-3 pb-3 mb-3 d-flex">
-			<!--<div class="image">
-				<img src="<?php //echo $logoApp; ?>" class="img-circle elevation-2" alt="User Image">
-			</div>-->
 			<div class="info">
 				<a class="d-block">
-					<b>Darma Kusumandaru</b><br>
-					<b><i>Admin</i></b> 
+					<b th:text="${user.name}"></b><br>
+					<b><i th:text="${user.role}"></i></b> 
 				</a>
 			</div>
 		</div>
@@ -45,7 +36,7 @@ and open the template in the editor.
 
 
 					<li class="nav-item has-treeview">
-						<a href="" class="nav-link">
+						<a href="" class="nav-link" th:href="@{/product}">
 							<i class="nav-icon fas fa-box"></i>
 							<p>
 								Data Master
@@ -54,46 +45,25 @@ and open the template in the editor.
 						</a>
 						<ul class="nav nav-treeview">
 							<li class="nav-item">
-								<a href="product" class="nav-link ">
+								<a href="product" class="nav-link" th:href="@{/product}">
 									<i class="far fa-circle fa-xs nav-icon"></i>
-									<p>Rule</p>
-								</a>
-							</li>
-							<li class="nav-item">
-								<a href="categories" class="nav-link">
-									<i class="fas fa-tags fa-xs nav-icon"></i>
-									<p>Department</p>
-								</a>
-							</li>
-							<li class="nav-item">
-								<a href="wholesales" class="nav-link">
-									<i class="fas fa-truck-loading fa-xs nav-icon"></i>
-									<p>Action</p>
-								</a>
-							</li>
-							<li class="nav-item">
-								<a href="logs" class="nav-link">
-									<i class="fas fa-history fa-xs nav-icon"></i>
-									<p>Feature</p>
+									<p>Product Category</p>
 								</a>
 							</li>
 						</ul>
 					</li>
 
-					<li class="nav-item">
+					<!--<li class="nav-item">
 						<a href="discount" class="nav-link">
 							<i class="nav-icon fas fa-percentage"></i>
 							<p>
 								Schedule
 							</p>
 						</a>
-					</li>				 
-
-
-
+					</li>-->
 
 				<li class="nav-item">
-					<a href="user/logout" class="nav-link">
+					<a th:href="@{/logout}" class="nav-link">
 						<i class="nav-icon fas fa-sign-out-alt"></i>
 						<p>
 							Logout

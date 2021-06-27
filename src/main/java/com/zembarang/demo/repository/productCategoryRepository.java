@@ -28,4 +28,5 @@ public interface productCategoryRepository extends CrudRepository<ProductCategor
 //    @Query(value = "SELECT * FROM product_category", nativeQuery = true)
 //    List <ProductCategory>  getMax();
 
+
 }

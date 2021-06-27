@@ -1,55 +1,70 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-
 <html xmlns:th="http://www.thymeleaf.org">
 
-
-<html>
-
     <head th:insert="fragments/header.html :: head">
-
     </head>
 
     <body>
 
         <div class="container">
-            </br>
-            <button type="button" class="btn btn-success">Add Users</button>
-            </br>
-            </br>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">No</th>
-                        <th scope="col">First Name</th>
-                        <th scope="col">Last Name</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Role</th>
-                        <th scope="col">Department</th>
-                        <th scope="col">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr th:each="users : ${users}">
-                        <th scope="row">1</th>
-                        <td th:text="${users.firstName}"></td>
-                        <td th:text="${users.lastName}"></td>
-                        <td th:text="${users.emailUser}"></td>
-                        <td th:text="${users.idRole}"></td>
-                        <td th:text="${users.idDepartment}"></td>
-                        <td><button type="button" class="btn btn-primary">Update</button> <button type="button" class="btn btn-danger">Delete</button></td>
-                        
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <!-- Optional JavaScript; choose one of the two! -->
+            <header>
+                <center>
+                    <br><br><br>
+                    <div class="row">
+                        <h1>
+                            Demo SpringBoot
+                        </h1>
+                    </div>
+                    <br>
+                    <a class="btn btn-lg btn-primary" th:href="@{/login}">
+                        <span class="fas fa-login"> Login</span>
+                    </a>
+                </center> 
+                <br> 
+            </header>
+            
+            <div class="row">
+              <div class="col-sm-6 col-md-4">
+                <div class="card " style="width: 18rem;">
+                  <div class="card-body">
+                    <h5 class="card-title">CRUD</h5>
+                    <h6 class="card-subtitle mb-2 text-muted"></h6>
+                    <p class="card-text">
+                        <b><i>Create</i></b>, <b><i>Read</i></b>, <b><i>Update</i></b> and <b><i>Delete</i></b> data from Database MYSQL
+                        <ul>
+                            <li> Master Table</li>
+                            <li> Transaction Table</li>
+                        </ul>
+                    </p>
+                    <a th:href="@{/product/category}" class="card-link">Master : Product Category</a>
+                    <a th:href="@{/product}" class="card-link">Transaction : Product </a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-6 col-md-4">
+                <div class="card " style="width: 18rem;">
+                  <div class="card-body">
+                    <h5 class="card-title">Spring Security</h5>
+                    <h6 class="card-subtitle mb-2 text-muted"></h6>
+                    <p class="card-text">User authentication with spring security depedency</p>
+                    <a th:href="@{/login}" class="card-link">Login</a>
+                    <a th:href="@{/logout}" class="card-link">Logout</a>
+                  </div>
+                </div>
+                <div class="col-sm-6 col-md-4">
+                <div class="card " style="width: 18rem;">
+                  <div class="card-body">
+                    <h5 class="card-title">Spring Mail</h5>
+                    <h6 class="card-subtitle mb-2 text-muted"></h6>
+                    <p class="card-text">Send request key to Reset Password to Email (user who already registered)</p>
+                    <!-- <a href="#" class="card-link">Card link</a> -->
+                    <a th:href="@{/password/forgot}" class="card-link">Forgot Password</a>
+                  </div>
+                </div>
+              </div>
+            </div>
 
-        <!-- Option 1: Bootstrap Bundle with Popper -->
+        </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
 
         <!-- Option 2: Separate Popper and Bootstrap JS -->
