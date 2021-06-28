@@ -27,8 +27,9 @@ public class apiGatewayService {
 //        String url = "http://localhost:8074/api/holiday.json";
         String url = path;
         HttpGet request = new HttpGet(url);
-
+        
         request.setHeader("Content-type", "application/json");
+        
         HttpClient client = HttpClientBuilder.create().build();
 
         HttpResponse response = client.execute(request);
