@@ -5,6 +5,7 @@
  */
 package com.zembarang.demo.config;
 
+import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,8 +15,9 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-//import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.provisioning.JdbcUserDetailsManager;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 /**
  *
@@ -23,7 +25,13 @@ import org.springframework.security.crypto.password.PasswordEncoder;
  */
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
-
+    @Autowired
+    DataSource dataSource;
+    
+    // TAMBAHI CUSTOM SUCCESS HANDLER
+    @Autowired
+    SecurityCustomSuccessHandler customSuccessHandler;
+    
     @Autowired
     UserDetailsService userDetailService;
     
@@ -32,11 +40,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
         return new BCryptPasswordEncoder();
     }
     
+    @Bean
+    public JdbcUserDetailsManager jdbcUserDetailsManager() throws Exception{
+        JdbcUserDetailsManager jdbcUserDetailsManager = new JdbcUserDetailsManager();
+        jdbcUserDetailsManager.setDataSource(dataSource);
+        return jdbcUserDetailsManager;
+    }
+    
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailService)
-                .passwordEncoder(passwordEncoder());
-                //To change body of generated methods, choose Tools | Templates.
+            .passwordEncoder(passwordEncoder());
     }
 
     
@@ -47,12 +61,25 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                 .antMatchers("/product").hasAnyRole("admin", "user")
                 .antMatchers("/").permitAll()
                 .antMatchers("/password/forgot").permitAll()
-//                .antMatchers("").permitAll()
                 .antMatchers(HttpMethod.POST, "/password/forgot/request").permitAll()
-                .antMatchers("/password/reset").permitAll()
-//                .antMatchers("/").permitAll()
+                .anyRequest()
+                .authenticated()
                 .and()
-                .formLogin();
+                .formLogin()
+                .successHandler(customSuccessHandler)
+                .usernameParameter("email")
+                .passwordParameter("password")
+                .failureUrl("/department")
+                .permitAll()
+                .and().csrf()
+                .and()
+                .exceptionHandling()
+                .accessDeniedPage("/accsess_denied")
+                .and()
+                .logout()
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                .addLogoutHandler(new SecurityLogout())
+                .logoutSuccessUrl("/loginPage");
     }
     
     
