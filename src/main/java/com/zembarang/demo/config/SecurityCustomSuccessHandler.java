@@ -58,7 +58,7 @@ public class SecurityCustomSuccessHandler extends SimpleUrlAuthenticationSuccess
         if (role.equals("[ROLE_admin]")) {
             url = "product/category";
         } else if(role.equals("[ROLE_user]")){
-            url = "product";
+            url = "product/";
         } else{
             url = "doctor";
         }

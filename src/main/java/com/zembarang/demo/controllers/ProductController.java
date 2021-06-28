@@ -8,14 +8,25 @@ package com.zembarang.demo.controllers;
 import com.zembarang.demo.config.skylightSupportModalCrud;
 import com.zembarang.demo.entity.Product;
 import com.zembarang.demo.entity.ProductCategory;
+import com.zembarang.demo.entity.User;
+import com.zembarang.demo.entity.UserSession;
+import com.zembarang.demo.serviceimplement.apiGatewayService;
 import com.zembarang.demo.serviceimplement.productCategoryService;
 import com.zembarang.demo.serviceimplement.productService;
+import com.zembarang.demo.serviceimplement.userService;
+import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import net.minidev.json.JSONArray;
 import net.minidev.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,20 +47,79 @@ public class ProductController {
     
     @Autowired
     productCategoryService productCategoryService;
+   
+    @Autowired
+    userService uService;
     
     @Autowired
     skylightSupportModalCrud skylightSupportModalCrud;
+    
+    @Autowired
+    apiGatewayService apiService;
 
+    public Boolean checkHoliday() throws IOException {
+        Boolean result = null;
+        String path = "http://localhost:8074/api/holiday.json";
+        String data = apiService.Get(path);
+        
+        org.json.JSONObject dataObject = new org.json.JSONObject(data);
+        org.json.JSONArray dataArray = new org.json.JSONArray(dataObject.getJSONArray("data"));
+        System.out.println(dataArray);
+        
+
+        for (Object row : dataArray) {
+            String remark = ((org.json.JSONObject) row).getString("remark");
+            String date = ((org.json.JSONObject) row).getString("date");
+            
+            System.out.println(((org.json.JSONObject) row).getInt("id"));
+            System.out.println(date);
+            System.out.println(remark);
+            
+            
+//            Date today = new Date();  
+            String pattern = "dd-mm-yyyy";
+
+            DateFormat df = new SimpleDateFormat(pattern);
+
+
+            Date getToday = Calendar.getInstance().getTime();
+            String today = df.format(getToday); 
+            if (today.equals(date)){
+                result = true;
+            }else{
+                result = false;
+            }
+            
+        }
+        
+        return result;
+    }
+
+    
+    
     @GetMapping("/product")
     public String getProduct(Model model) {
         
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String email = auth.getName();
+        User user = uService.getEmailUser(email);
+        
+        String id = user.getIdUser();
+        String name = user.getUsernameUser();
+        String role = user.getTypeUser();
+        
+        UserSession users = new UserSession(name, id, role);
+        model.addAttribute("user", users);
+        
         Iterable<Product> product = productService.getActiveProduct();
         model.addAttribute("product", product);
+        
         
 //        Product productCrud = new Product();
 //        model.addAttribute("add", productCrud);        
 //        model.addAttribute("editProduct", productCrud);
 //        model.addAttribute("removeProduct", productCrud);
+//        model.addAttribute("holiday", dataObject);
 
 
         Iterable<ProductCategory> category = productCategoryService.getActiveProductCategory();
@@ -120,24 +190,31 @@ public class ProductController {
         @RequestParam(value = "product_price_add", required = false) Integer priceProduct,
         @RequestParam(value = "product_amount_add", required = false) Integer amountProduct,      
         @RequestParam(value = "product_category_id_select_add", required = false) String idProductCategory      
-    ){
-        String idProduct = generateId();
-        String activeProduct = "true";
-       
-        int idProductCategoryInt = Integer.parseInt(idProductCategory);
-        Object idProductCategoryObject = new ProductCategory(idProductCategoryInt);
+    ) throws IOException{
         
-        Product product = new Product(idProduct, nameProduct, describeProduct, priceProduct, amountProduct, activeProduct, idProductCategoryObject);
-        product.setIdProduct(idProduct);
-        product.setNameProduct(nameProduct);
-        product.setDescribeProduct(describeProduct);
-        product.setPriceProduct(priceProduct);
-        product.setAmountProduct(amountProduct);
-        product.setActiveProduct(activeProduct);
-        product.setIdProductCategory(idProductCategoryObject);
+        Boolean cekdate = checkHoliday();
+        
+        if (cekdate.equals(false)) {
+            String idProduct = generateId();
+            String activeProduct = "true";
 
-        this.productService.save(product);
-        return "redirect:/product";
+            int idProductCategoryInt = Integer.parseInt(idProductCategory);
+            Object idProductCategoryObject = new ProductCategory(idProductCategoryInt);
+
+            Product product = new Product(idProduct, nameProduct, describeProduct, priceProduct, amountProduct, activeProduct, idProductCategoryObject);
+            product.setIdProduct(idProduct);
+            product.setNameProduct(nameProduct);
+            product.setDescribeProduct(describeProduct);
+            product.setPriceProduct(priceProduct);
+            product.setAmountProduct(amountProduct);
+            product.setActiveProduct(activeProduct);
+            product.setIdProductCategory(idProductCategoryObject);
+
+            this.productService.save(product);
+            return "redirect:/product";            
+        }else{
+          return "redirect:/product";  
+        }
     }
 
     

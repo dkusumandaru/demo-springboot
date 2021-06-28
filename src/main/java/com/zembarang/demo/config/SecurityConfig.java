@@ -58,7 +58,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/product*").hasRole("admin")
-                .antMatchers("/product").hasAnyRole("admin", "user")
+                .antMatchers("/product/").hasRole("user")
                 .antMatchers("/").permitAll()
                 .antMatchers("/password/forgot").permitAll()
                 .antMatchers(HttpMethod.POST, "/password/forgot/request").permitAll()
