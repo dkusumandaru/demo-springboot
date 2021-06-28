@@ -17,6 +17,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/product/")
 @Api(tags = "Product")
-public class ProductRestController {
+public class _productRestControllerBackup {
     
 }

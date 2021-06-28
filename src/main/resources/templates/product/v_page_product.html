@@ -105,6 +105,10 @@
             <!--<form th:insert="product/v_remove.html :: form" id="add-row-form" th:action="@{/product/remove}" th:object="${removeProduct}" method="POST"></form>-->
             <!-- <footer th:insert="components/footer.html :: footer"></footer> -->
         </div>
+        
+        <textarea th:field="*{holiday}">
+            
+        </textarea>
 
 
         <div th:insert="components/crud/v_modal.html :: form"></div>

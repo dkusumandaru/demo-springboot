@@ -8,8 +8,10 @@ package com.zembarang.demo.controllers;
 import com.zembarang.demo.config.skylightSupportModalCrud;
 import com.zembarang.demo.entity.Product;
 import com.zembarang.demo.entity.ProductCategory;
+import com.zembarang.demo.serviceimplement.apiGatewayService;
 import com.zembarang.demo.serviceimplement.productCategoryService;
 import com.zembarang.demo.serviceimplement.productService;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -39,17 +41,27 @@ public class ProductController {
     
     @Autowired
     skylightSupportModalCrud skylightSupportModalCrud;
+    
+    @Autowired
+    apiGatewayService apiService;
 
     @GetMapping("/product")
-    public String getProduct(Model model) {
+    public String getProduct(Model model) throws IOException {
         
         Iterable<Product> product = productService.getActiveProduct();
         model.addAttribute("product", product);
+        
+        String path = "http://localhost:8074/api/holiday.json";
+        String data = apiService.Get(path);
+        
+        org.json.JSONObject dataObject = new org.json.JSONObject(data);
+        
         
 //        Product productCrud = new Product();
 //        model.addAttribute("add", productCrud);        
 //        model.addAttribute("editProduct", productCrud);
 //        model.addAttribute("removeProduct", productCrud);
+        model.addAttribute("holiday", dataObject);
 
 
         Iterable<ProductCategory> category = productCategoryService.getActiveProductCategory();
